@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Girl implements ICreator, IPainter{
+public class Girl implements ICreatorShape, IPainter{
     private HashMap<Matirial, Sheet> sheets;
     private List<Paint> paints;
 
