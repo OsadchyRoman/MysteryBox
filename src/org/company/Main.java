@@ -9,8 +9,8 @@ import org.company.service.ICreatorWithPaints;
 public class Main {
 
     public static void main(String[] args) {
-        ICreatorWithPaints iCreatorWithColor= new Girl();
-        Shape shape = iCreatorWithColor.paperShape(ShapeType.EQUILATERALTRIANGLE, 8);
+        Gitrl girl= new Girl();
+        Shape shape = girl.paperShape(ShapeType.EQUILATERALTRIANGLE, 8);
         iCreatorWithColor.paintShape(Color.RED, shape);
         iCreatorWithColor.paintShape(Color.WHITE, shape);
         System.out.println(shape);
