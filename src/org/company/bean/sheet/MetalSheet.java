@@ -1,4 +1,4 @@
-package org.company.bean;
+package org.company.bean.sheet;
 
 public class MetalSheet extends Sheet {
     @Override

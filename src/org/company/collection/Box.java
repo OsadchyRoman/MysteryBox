@@ -1,73 +1,39 @@
 package org.company.collection;
 
-import org.company.bean.Shape;
+import org.company.bean.shape.Shape;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class Box {
+    private List<Shape> list;
 
-    private Shape[] shapes;
-    private ArrayList<String> arrayList;
-    private int index;
-    private static final int DEFAULT_CAPACITY = 10;
-
-    public Box(){
-        index = 0;
-        shapes = new Shape[DEFAULT_CAPACITY];
-        arrayList = new ArrayList<>();
+    public Box(List<Shape> list) {
+        this.list = list;
     }
 
-    public Shape[] getShapes() {
-        return shapes;
+    public void put(Shape shape){
+        this.list.add(shape);
     }
 
-    public void setShapes(Shape[] shapes) {
-        this.shapes = shapes;
+    public Shape getLastShape(){
+        Shape shape = list.get(list.size()-1);
+        this.list.remove(list.size()-1);
+        return shape;
     }
 
-    public ArrayList<String> getArrayList() {
-        return arrayList;
+    public List<Shape> getList() {
+        return list;
     }
 
-    public void setArrayList(ArrayList<String> arrayList) {
-        this.arrayList = arrayList;
+    public void setList(List<Shape> list) {
+        this.list = list;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    protected void increaseCapacity(){
-        if (DEFAULT_CAPACITY == shapes.length)
-            shapes = Arrays.copyOf(shapes, (int)(DEFAULT_CAPACITY*1.5));
-    }
-
-    public void add(Shape shape){
-        increaseCapacity();
-        shapes[index++] = shape;
-    }
-
-    private void addInformation(String string) {
-        arrayList.add(string);
-    }
-
-    public void printShapes() {
-        int n = getIndex();
-        for (int i = 0; i < n; i++) {
-            shapes[i].toString();
+    @Override
+    public String toString() {
+        for (Shape shape : list){
+            shape.toString();
         }
+        return "";
     }
-
-    public void printInformation(){
-        for (int i = 0; i < getIndex(); i++) {
-            System.out.println(arrayList.get(i));
-        }
-
-    }
-
 }

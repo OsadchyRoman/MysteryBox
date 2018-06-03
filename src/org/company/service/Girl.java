@@ -1,41 +1,73 @@
 package org.company.service;
 
-import org.company.bean.*;
+import org.company.bean.paints.Paint;
+import org.company.bean.shape.Shape;
+import org.company.bean.sheet.Matirial;
+import org.company.bean.sheet.Sheet;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Girl implements ICreatorWithPaints{
+public class Girl implements ICreatorShape {
     private HashMap<Matirial, Sheet> sheets;
     private List<Paint> paints;
 
-    public Girl(){
-        sheets = new HashMap<>();
-        sheets.put(Matirial.PAPER, new PaperSheet());
-        sheets.put(Matirial.METAL, new MetalSheet());
-        paints = new ArrayList<>();
-        paints.add(new Paint(Color.BLUE));
-        paints.add(new Paint(Color.RED));
-        paints.add(new Paint(Color.YELLOW));
+    public Girl(HashMap<Matirial, Sheet> sheets, List<Paint> paints) {
+        this.sheets = sheets;
+        this.paints = paints;
     }
 
-    public Shape metalShape(ShapeType shapeType, double ... values){
-        return sheets.get(Matirial.METAL).createShape(shapeType, values);
+    public HashMap<Matirial, Sheet> getSheets() {
+        return sheets;
     }
 
-    public Shape paperShape(ShapeType shapeType, double ... values){
-        return sheets.get(Matirial.PAPER).createShape(shapeType, values);
+    public void setSheets(HashMap<Matirial, Sheet> sheets) {
+        this.sheets = sheets;
     }
 
-    public void paintShape(Color color, Shape shape){
-        for(Paint paint : paints){
-            if (paint.getColor() == color){
-                shape.setColor(paint.getColor());
-            }
-        }
+    public List<Paint> getPaints() {
+        return paints;
+    }
 
+    public void setPaints(List<Paint> paints) {
+        this.paints = paints;
+    }
+
+    public Shape createPaperTriangle(double side){
+        return sheets.get(Matirial.PAPER).createTriangle(side);
+    }
+
+    public Shape createMetalTriangle(double side){
+        return  sheets.get(Matirial.METAL).createTriangle(side);
+    }
+
+    public Shape createPaperCircle(double radius) {
+        return sheets.get(Matirial.PAPER).createCircle(radius);
+    }
+
+    public Shape createMetalCircle(double radius){
+        return sheets.get(Matirial.METAL).createCircle(radius);
+    }
+
+    public Shape createPaperRectangle(double firstSide, double secondSide){
+        return this.sheets.get(Matirial.PAPER).createRectangle(firstSide,secondSide);
+    }
+
+    public Shape createMetalRectangle(double firstSide, double secondSide){
+        return sheets.get(Matirial.METAL).createRectangle(firstSide,secondSide);
+    }
+
+    public Shape createPaperSquare(double side){
+        return sheets.get(Matirial.PAPER).createSquare(side);
+
+    }
+    public Shape createMetalSquare(double side){
+        return sheets.get(Matirial.METAL).createSquare(side);
     }
 
 
+    public Shape paintShape(int indexColor, Shape shape){
+        shape.setColor(paints.get(indexColor).getColor());
+        return shape;
+    }
 }
